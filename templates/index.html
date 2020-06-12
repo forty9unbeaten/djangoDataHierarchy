@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        {% load mptt_tags %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link type='text/css' rel='stylesheet' href={% static 'main.css' %}>
+        <title>Hierarchical Data</title>
+    </head>
+    <body>
+        {% recursetree nodes %}
+            <li class='tree'>
+                {{ node.name }}
+                {% if not node.is_leaf_node %}
+                    <ul class='children'>
+                        {{ children }}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endrecursetree %}
+    </body>
+</html>
